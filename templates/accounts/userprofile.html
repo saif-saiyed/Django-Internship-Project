@@ -1,0 +1,39 @@
+{% extends "base/base.html"%}
+
+{%  block start %}
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="card">
+            <div class="row no-gutters">
+                <main class="col-md-12 border-left">
+                    <div class="container user-profile">
+                        <div class="account-info">
+                          <h2>My Profile</h2>
+                          <img src={{request.session.profile_image}}>
+                          <p><strong>Name:</strong> {{ request.session.first_name }} {{ request.session.last_name }}</p>
+                          <p><strong>Email:</strong> {{ request.session.email }}</p>
+                          <p><strong>Member since:</strong> {{ request.session.created_at }}</p>
+                          <p><strong>Last login:</strong> {{ request.session.last_login }}</p>
+                          
+
+                          <form method="POST">
+                            {% csrf_token %} 
+                            {% include "base/alert.html" %}
+                     
+                          <div class="address-book">
+                            <p><strong>Shipping Address: </strong> <textarea placeholder="Address" style="width: 40%;"> {{ request.session.address }}</textarea> <button href="{% url 'update_address' %}" type="submit""> Update Address </button> </p>
+                    
+                          </div>
+                          </form>
+
+                        </div>
+                    </div>
+                </main>
+            </div> 
+        </div> 
+    </div>
+</section>
+    
+
+{% endblock %}

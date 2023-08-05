@@ -1,0 +1,105 @@
+{% extends "base/base.html"%}
+
+{%  block start %}
+
+<head>
+    <style>
+       .products {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+}
+
+.product-item {
+    margin-right: 20px; 
+    text-align: center;
+}
+
+.product-item:last-child {
+    margin-right: 0; 
+}
+
+.product-item img {
+    width: 200px; 
+}
+
+.product-item a {
+    color: rgb(0, 0, 0); 
+}
+        
+        .brand-product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: scale(0.7); /* Reduce the size to 50% of its original */
+
+        }
+
+           
+    
+    </style>
+</head>
+
+<body>
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="card">
+            <div class="row no-gutters">
+               
+              
+                <main class="col-md-12 border-left">
+                    <article class="content-body">
+                        
+                        
+                        <div>
+                           
+                            <h2>Discover Your Style</h2>
+                            <p>Unleash Your Confidence - Embark on a fashion journey with DesiTrends Studio, where every outfit tells a story of empowerment and individuality.</p>
+                            <section class="brand-product">    
+                                <img src="/media/test-banner.jpg" width="1500px" height="500px" alt="Brand Product Image">
+                            </section>
+                        </div>
+
+                        <hr/>
+                        <div class="about-content">
+                            <h2>About Us</h2>
+                            <p>DesiTrends Studio is a fashion-forward and contemporary clothing store dedicated to providing high-quality and stylish apparels. With a focus on comfort, quality, and the latest fashion trends, we strive to create collections that inspire confidence and empower self-expression. From everyday essentials to statement pieces, we curate a wide range of clothing options to suit every style and occasion. Welcome to our world of fashion, where you can discover your unique style and embrace your individuality.</p>
+                        </div>
+                
+                 
+                        
+                        <hr/>
+                        <div>
+                            <h2>Our Featured Collections</h2>
+                            <p>Elevate your style with our curated collection of timeless fashion, where elegance meets comfort.</p>
+
+                            <div class="row">
+
+                                {% for product in products %}
+                                <div class="col-md-3">
+                                    <figure class="card card-product-grid">
+                                        <div class="img-wrap"> <img src="/media/{{product.product_images.first.image}}"> </div>
+                                        <figcaption class="info-wrap border-top">
+                                            <a href="{% url 'get_product' product.slug %}" class="title">
+                                                <b>{{product.product_name}}</b></a>
+                                            <div class="price mt-2">₹{{product.price}}.00</div>
+                                        </figcaption>
+                                    </figure> 
+                                </div> 
+                        
+                                {% endfor %}
+                        
+                            </div>
+                        </div>
+                    </article>
+                </main> 
+            </div> 
+        </div> 
+    </div>
+</section>
+    
+</body>
+
+
+{% endblock %}

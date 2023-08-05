@@ -1,0 +1,51 @@
+{% extends "base/base.html" %} 
+
+
+{% block start %}
+
+
+<section class = "section-content padding-y">
+    <div class="container">
+
+        <div class="row">
+            <main class="col-md-12">
+                <div class="card">
+
+                <table class="table table-borderless table-shopping-cart">
+                <thead class="text-muted">
+                <tr class="small text-uppercase">
+                    <th scope="col">Product</th>
+                    <th scope="col" class="text-right" width="200">  </th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                <tr>
+                    <td>
+                        <figure class="itemside">
+                            <div class="aside"><img src="/media/{{product.product_images.first.image}}" class="img-sm"/></div>
+                            <figcaption class="info">
+                                <a href="{% url 'get_product' product.slug %}" class="title text-dark">{{product.product_name}}</a>
+                                <p class="text-muted small">Price: ₹{{product.price}}.00</p>
+                                <p class="text-muted small">Category: {{product.category.category_name}}</p>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td><a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-heart wished-product "></i></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <div class="card-body border-top">
+                    <a href="{% url 'get_products'%}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
+                </div>  
+            </div>
+
+            <div class="alert alert-success mt-3">
+                <p class="icontext"> <i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks. </p>
+            </div>
+        </main>
+        </div>
+    </div> 
+</section>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Online Fashion Marketplace - DesiTrends Studio</title>
+
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+<script src="/media/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<script src="/media/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="/media/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<link href="/media/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<link href="/media/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/media/css/responsive.css" rel="stylesheet" />
+
+<script src="/media/js/script.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+
+
+$(document).ready(function() {
+
+
+}); 
+
+</script>
+
+</head>
+<body>
+	{% load static %}
+
+	<header class="section-header">
+		<section class="header-main border-bottom" style="background: black;">
+			<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-2 col-4">
+				<div class="brand-wrap">
+					<img class="logo" src="/media/logo.png">
+				</div> 
+			</div>
+			<div class="col-lg-6 col-sm-6 col-8">
+				<div class="row">
+					<div class="col-lg-2"><a href="/" class="white">Home</a></div>
+					<div class="col-lg-2"><a href="/product/list" class="white">Products</a></div>
+					<div class="col-lg-2"><a href="/aboutus" class="white">About Us</a></div>
+					<div class="col-lg-3"><a href="/contactus" class="white">Contact Us</a></div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 col-sm-6 col-8">
+				<div class="widgets-wrap float-md-right">
+					<div class="widget-header  mr-3">
+						{% if request.session.first_name != null %}
+						<a href="{% url 'cart' %}" class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart white"></i></a>
+						<span class="badge badge-pill badge-danger notify">{{request.user.profile.get_cart_count}}</span>	
+						{% endif %}
+					</div>
+					<div class="widget-header icontext">
+						{% if request.session.first_name != null %}
+						<a href="{% url 'wishlist' %}" class="icon icon-sm rounded-circle border"><i class="fa fa-heart white"></i></a>
+						<a href="{% url 'userprofile' %}" class="icon icon-sm rounded-circle border"><i class="fa fa-user white"></i></a>
+						{% endif %}
+						<div class="text">
+							{% if request.session.first_name != null %} <span class="text-muted white">Welcome {{ request.session.first_name }}!</span>{% endif %}
+							<div> 
+
+								{% if request.session.first_name != null %}
+								<a href="{% url 'logout' %}" class="white"> Log Out</a>	
+								{% else %}
+								<a href="{% url 'login' %}" class="white">Log In |</a>   
+								<a href="{% url 'register' %}" class="white"> Register</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div> 
+			</div> 
+		</section> 
+		</header>
+
+        {% block start %}
+        {% endblock %}
+    </body>
+
+	<footer>
+		<div class="footer-content row col-lg-12">
+			<div class="footer-logo col-lg-1">
+				<img class="logo" src="/media/logo.png">
+			</div>
+			<div class="footer-links col-lg-4">
+				<div class="row">
+					<a class="col-lg-3" href="/">Home</a>
+					<a class="col-lg-3" href="{% url 'get_products'%}">Products</a>
+					<a class="col-lg-3" href="{% url 'aboutus' %}">About Us</a>
+					<a class="col-lg-3" href="{% url 'contactus' %}">Contact Us</a>
+				</div>
+			</div>
+			<div class="footer-bottom col-lg-4">
+				<p>&copy; 2023 DesiTrends Studio. All rights reserved.</p>
+			</div>
+			<div class="footer-contact col-lg-3">
+				<p>Email: info@desitrendsstudio.com</p>
+				<p>Phone: +91-9549318552</p>
+			</div>
+		</div>
+	   
+	</footer>
+</html>
